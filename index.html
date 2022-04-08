@@ -18,32 +18,28 @@
 <body>
 
   <header>
-    <div class="collapse bg-dark" id="navbarHeader">
+    <div class="collapse bg-warning" id="navbarHeader">
       <div class="container">
         <div class="row">
           <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">About</h4>
-            <p class="text-muted">只是拿來測試用的，請不要太認真</p>
+            <h4 class="text-black">About</h4>
+            <p class="text-muted">
+              google表單的串聯練習實作
+            </p>
           </div>
           <div class="col-sm-4 offset-md-1 py-4">
-            <h4 class="text-white">Contact</h4>
+            <h4 class="text-black">Contact</h4>
             <ul class="list-unstyled">
-              <li><a href="#" class="text-white">Email me</a></li>
+              <li><a href="https://forms.gle/T6DV7pRHDtnJZpfRA" class="text-black">聯絡我</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar navbar-light shadow-sm">
       <div class="container">
         <a href="#" class="navbar-brand d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-               stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
-               viewBox="0 0 24 24">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-            <circle cx="12" cy="13" r="4"></circle>
-          </svg>
-          <strong>google表單的串聯練習</strong>
+          <strong>許願池</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
                 aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,13 +52,13 @@
   <main>
 
     <section class="py-5 text-center container-fluid"
-             style="background-image: url('https://picsum.photos/id/326/1440/364?blur=2');">
+             style="background-image: url('https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">許願池</h1>
-          <p class="lead text-muted">生活壓力大，今天的下午茶，想點些什麼呢?</p>
+          <h1 class="fw-light text-white">許願池</h1>
+          <p class="lead text-white-50">生活壓力大，今天的下午茶，想點些什麼呢?</p>
           <p>
-            <a href="https://forms.gle/BTGUuhz8WQJEGiFv6" class="btn btn-primary my-2" target="_blank">我想來點</a>
+            <a href="https://forms.gle/BTGUuhz8WQJEGiFv6" class="btn btn-success my-2" target="_blank">我想來點</a>
           </p>
         </div>
       </div>
@@ -77,8 +73,9 @@
             <div class="card shadow-sm">
               <img class="img-fluid" src="https://picsum.photos/id/0/1440/480" alt="">
               <div class="card-body">
-                <span class="text-muted">2022/4/8 上午 11:08:28 by匿名者</span>
-                <p class="card-text">願望說明</p>
+                <div class="text-muted small">YYYY/MM/DD 下午 HH:MM:SS</div>
+                  <div class="card-text">您說的願望</div>
+                  <div class="text-muted small text-end">by你的匿名</div>
               </div>
             </div>
           </div>
@@ -94,9 +91,8 @@
       <p class="float-end mb-1">
         <a href="#">Back to top</a>
       </p>
-      <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-      <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-           href="/docs/5.1/getting-started/introduction/">getting started guide</a>.</p>
+      <p class="mb-1"><a class="text-muted" href="https://www.suhan.tw" target="_blank" rel="noopener noreferrer">by suhan.tw</a><br/>
+        Use Bootstrap5,jQuery ajax ,Lorem Picsum ,Images from <a class="text-muted" target="_blank" href="https://unsplash.com">Unsplash</a></p>
     </div>
   </footer>
   <script src="scripts/jquery-3.6.0.min.js"></script>
@@ -122,9 +118,9 @@
               <div class="card shadow-sm">\
                 <img class="img-fluid" src="https://picsum.photos/id/'+ changeTime(k[0]) + '/320/150" alt="">\
                 <div class="card-body">\
-                  <div class="text-muted small">'+k[0]+'</div>\
+                  <div class="text-muted small">'+ k[0] + '</div>\
                   <div class="card-text">'+ k[2] + '</div>\
-                  <div class="text-muted small text-end">by'+k[1]+'</div>\
+                  <div class="text-muted small text-end">by'+ k[1] + '</div>\
                 </div>\
               </div>\
             </div>';
@@ -137,13 +133,12 @@
     });
 
     function changeTime(option) {
-      // currentTime当前时间，假设是 2019-7-2 19:03
       var currentTime = option;
-      var reg = new RegExp("-", "g");//去掉时间里面的-
+      var reg = new RegExp("-", "g");
       var a = currentTime.replace(reg, "");
-      var regs = new RegExp(" ", "g");//去掉时间里面的空格
+      var regs = new RegExp(" ", "g");
       var b = a.replace(regs, "");
-      var regss = new RegExp(":", "g");//去掉时间里面的:冒号
+      var regss = new RegExp(":", "g");
       var c = b.replace(regss, "");
       return Number(c.substr(13, 15));
     }
