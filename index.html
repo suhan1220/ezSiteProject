@@ -99,16 +99,41 @@
     </div>
   </footer>
 
-  <script  src="https://code.jquery.com/jquery-3.6.0.min.js"
-          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-          crossorigin="anonymous"></script>
   <script>
+    var ListDom = document.querySelector('[data-list="block"]');
+    var spreadsheet_id = '1XmWlOOLEiMiWAdRl2o7pqgAPxs0JImV40xQ8xH-2how';
+    var tab_name = 1;
+    var api_key = 'AIzaSyAiirF6CRuj1xmjygZ-BTYhhQkmjQAaG7g';
+    var dataurl = 'https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheet_id + '/values/' + tab_name + '?alt=json&key=' + api_key;
 
-    $(function () {      
-      $.get('https://sheets.googleapis.com/v4/spreadsheets/1XmWlOOLEiMiWAdRl2o7pqgAPxs0JImV40xQ8xH-2how/values/test?alt=json&key=AIzaSyAiirF6CRuj1xmjygZ-BTYhhQkmjQAaG7g', function (data) {
+    ListDatashow(dataurl);
+
+    function ListDatashow(dataurl) {
+      console.log(dataurl);
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', dataUrl);
+      xhr.send();
+      xhr.onload = function () {
+        var data = JSON.parse(this.responseText);
+        var list = "";
         console.log(data);
-      });
-    });
+        //data.forEach(function (k) {
+
+        // list +=
+        //   '<div class="col">\
+        //     <div class="card shadow-sm">\
+        //     <img class="img-fluid" src="" alt="">\
+        //     <div class="card-body">\
+        //       <p class="card-text">匿名者：願望說明</p>\
+        //     </div>\
+        //     </div>\
+        //   </div>';
+        // NewsListDom.innerHTML = list;
+        //});
+
+      }
+    };
+
   </script>
 
 </body>
