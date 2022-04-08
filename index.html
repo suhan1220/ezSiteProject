@@ -102,13 +102,16 @@
   <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
 
   <script>
-    var sheetid = '1XmWlOOLEiMiWAdRl2o7pqgAPxs0JImV40xQ8xH-2how';
-    var sheetno = 1;
-    var apikey = 'AIzaSyAiirF6CRuj1xmjygZ-BTYhhQkmjQAaG7g';
-    var dataurl = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetid + '?key=' + apikey;
 
-    var newsListData = function newsListData() {
-      var NewsListDom = document.querySelector('[data-list="block"]');
+    ListDatashow();
+    function ListDatashow() {
+      var ListDom = document.querySelector('[data-list="block"]');
+      var sheetid = '1XmWlOOLEiMiWAdRl2o7pqgAPxs0JImV40xQ8xH-2how';
+      var sheetno = 1;
+      var apikey = 'AIzaSyAiirF6CRuj1xmjygZ-BTYhhQkmjQAaG7g';
+      var dataurl = 'https://sheets.googleapis.com/v4/spreadsheets/' + sheetid + '?key=' + apikey;
+      console.log(dataurl);
+
       var xhr = new XMLHttpRequest();
       xhr.open('GET', dataUrl, true);
       xhr.send();
@@ -117,7 +120,7 @@
         var list = "";
         console.log(data);
         data.forEach(function (k) {
-          
+
           // list +=
           //   '<div class="col">\
           //     <div class="card shadow-sm">\
@@ -131,8 +134,7 @@
         });
 
       }
-      
-    }();
+    };
   </script>
 
 </body>
