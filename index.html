@@ -69,16 +69,16 @@
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" data-list="block">
 
-          <div class="col">
+          <!-- <div class="col">
             <div class="card shadow-sm">
-              <img class="img-fluid" src="https://picsum.photos/id/0/1440/480" alt="">
+              <img class="img-fluid" src="https://picsum.photos/id/0/320/150" alt="">
               <div class="card-body">
                 <div class="text-muted small">YYYY/MM/DD 下午 HH:MM:SS</div>
-                  <div class="card-text">您說的願望</div>
-                  <div class="text-muted small text-end">by你的匿名</div>
+                <div class="card-text">您說的願望</div>
+                <div class="text-muted small text-end">by你的匿名</div>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -91,18 +91,20 @@
       <p class="float-end mb-1">
         <a href="#">Back to top</a>
       </p>
-      <p class="mb-1"><a class="text-muted" href="https://www.suhan.tw" target="_blank" rel="noopener noreferrer">by suhan.tw</a><br/>
-        Use Bootstrap5,jQuery ajax ,Lorem Picsum ,Images from <a class="text-muted" target="_blank" href="https://unsplash.com">Unsplash</a></p>
+      <p class="mb-1"><a class="text-muted" href="https://www.suhan.tw" target="_blank" rel="noopener noreferrer">by
+          suhan.tw</a><br />
+        Use Bootstrap5,jQuery ajax ,Lorem Picsum ,Images from <a class="text-muted" target="_blank"
+           href="https://unsplash.com">Unsplash</a></p>
     </div>
   </footer>
   <script src="scripts/jquery-3.6.0.min.js"></script>
   <script>
     var ListDom = document.querySelector('[data-list="block"]');
-    var spreadsheet_id = '1XmWlOOLEiMiWAdRl2o7pqgAPxs0JImV40xQ8xH-2how';
-    var tab_name = 'test2';
-    var api_key = 'AIzaSyAiirF6CRuj1xmjygZ-BTYhhQkmjQAaG7g';
-    var dataurl = 'https://sheets.googleapis.com/v4/spreadsheets/' + spreadsheet_id + '/values/' + tab_name + '?key=' + api_key;
-    console.log(dataurl);
+    const spreadsheet_id = '1XmWlOOLEiMiWAdRl2o7pqgAPxs0JImV40xQ8xH-2how';
+    const tab_name = 'test2';
+    const api_key = 'AIzaSyAMpJ-FWW1qt2uH7auDxkPrXc_hkbg9fKw';
+    var dataurl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheet_id}/values/${tab_name}?key=${api_key}`
+    // console.log(dataurl);
     $.ajax({
       url: dataurl,
       type: "GET",
@@ -111,21 +113,90 @@
         Jdata.values.shift();//刪除表頭
         // console.log(Jdata.values);
         // console.log("SUCCESS!!!");
-        var list = "";
+
+        //寫法一
+        // let list = "";
+        // Jdata.values.forEach(function (k) {
+        //   list +=
+        //     `<div class="col">
+        //       <div class="card shadow-sm">
+        //         <img class="img-fluid" src="https://picsum.photos/id/${changeTime(k[0])}/320/150" alt="">
+        //         <div class="card-body">
+        //           <div class="text-muted small">${k[0]}</div>
+        //           <div class="card-text">${k[2]}</div>
+        //           <div class="text-muted small text-end">by${k[1]}</div>
+        //         </div>
+        //       </div>
+        //     </div>`;
+        // });
+        // ListDom.innerHTML = list;
+
+        //寫法二
+        // let lis = document.createDocumentFragment();
+        // Jdata.values.forEach(function (k) {
+        //   let li = document.createElement('div');
+        //   let card = document.createElement('div');
+        //   let img = document.createElement('img');
+        //   let cardBody = document.createElement('div');
+        //   let timeinfo = document.createElement('div');
+        //   let maininfo = document.createElement('div');
+        //   let authorinfo = document.createElement('div');
+        //   let  timetxt = document.createTextNode(`${k[0]}`);
+        //   let  maintxt = document.createTextNode(`${k[2]}`);
+        //   let  authortxt = document.createTextNode(`by${k[1]}`);
+        //   li.classList = 'col';
+        //   card.classList = 'card shadow-sm';
+        //   cardBody.classList = 'card-body';
+        //   img.classList = 'img-fluid';
+        //   img.setAttribute('alt', '');
+        //   img.setAttribute('src', `https://picsum.photos/id/${changeTime(k[0])}/320/150`);
+        //   timeinfo.classList = 'text-muted small';          
+        //   timeinfo.appendChild(timetxt);   
+        //   maininfo.classList = 'card-text';
+        //   maininfo.appendChild(maintxt);   
+        //   authorinfo.classList = 'text-muted small text-end';
+        //   authorinfo.appendChild(authortxt);   
+        //   li.appendChild(card);
+        //   card.appendChild(img);
+        //   card.appendChild(cardBody);
+        //   cardBody.appendChild(timeinfo);
+        //   cardBody.appendChild(maininfo);
+        //   cardBody.appendChild(authorinfo);
+        //   lis.appendChild(li);
+        // });
+        // ListDom.appendChild(lis);
+
+        //寫法三
+        let lis = document.createDocumentFragment();
+        function setDom(tag, classname) {
+          let doms = document.createElement(tag);
+          doms.classList = classname;
+          return doms;
+        }
         Jdata.values.forEach(function (k) {
-          list +=
-            '<div class="col">\
-              <div class="card shadow-sm">\
-                <img class="img-fluid" src="https://picsum.photos/id/'+ changeTime(k[0]) + '/320/150" alt="">\
-                <div class="card-body">\
-                  <div class="text-muted small">'+ k[0] + '</div>\
-                  <div class="card-text">'+ k[2] + '</div>\
-                  <div class="text-muted small text-end">by'+ k[1] + '</div>\
-                </div>\
-              </div>\
-            </div>';
-          ListDom.innerHTML = list;
+          let li = setDom('div', 'col');
+          let card = setDom('div', 'card shadow-sm');
+          let img = setDom('img', 'img-fluid w-100');
+          img.setAttribute('width', '320');
+          img.setAttribute('height', '150');
+          img.setAttribute('alt', '');
+          img.setAttribute('src', `https://picsum.photos/id/${changeTime(k[0])}/320/150`);
+          let cardBody = setDom('div', 'card-body');
+          let timeinfo = setDom('div', 'text-muted small');
+          let maininfo = setDom('div', 'card-text');
+          let authorinfo = setDom('div', 'text-muted small text-end');
+          timeinfo.textContent  = `${k[0]}`;          
+          maininfo.textContent  = `${k[2]}`;          
+          authorinfo.textContent  = `by${k[1]}`;
+          li.appendChild(card);
+          card.appendChild(img);
+          card.appendChild(cardBody);
+          cardBody.appendChild(timeinfo);
+          cardBody.appendChild(maininfo);
+          cardBody.appendChild(authorinfo);
+          lis.appendChild(li);
         });
+        ListDom.appendChild(lis);
       },
       error: function () {
         console.log("ERROR!!!");
